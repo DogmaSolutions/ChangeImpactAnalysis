@@ -130,30 +130,40 @@
             </GroupBox>
 
             <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+            <StackPanel Grid.Column="2">
+                <GroupBox Header="Graph options">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox IsChecked="{Binding Path=AnalysisParameters.RemoveRedundantDependencies}" Margin="2"></CheckBox>
+                            <TextBlock  Margin="2">Remove redundant dependencies</TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="GIT analysis">
+                    <StackPanel>
+                        <TextBlock TextWrapping="Wrap" Margin="3" FontSize="11px">Include all commits matching the following search parameters</TextBlock>
+                        <GroupBox Grid.Column="2"  Header="Push IDs">
+                            <StackPanel>
+                                <TextBlock TextWrapping="Wrap" Margin="3"  FontSize="11px">One hash code per line</TextBlock>
+                                <TextBox Height="100px" Text="{Binding Path=AnalysisParameters.Filters.GitCommitHashes}"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Grid.Column="2"  Header="Comments content">
+                            <StackPanel>
+                                <TextBlock TextWrapping="Wrap" Margin="3" FontSize="11px">One expression per line</TextBlock>
+                                <TextBox Height="100px" Text="{Binding Path=AnalysisParameters.Filters.TaskIds}"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Grid.Column="2"  Header="Force modules/components">
+                            <StackPanel>
+                                <TextBlock TextWrapping="Wrap" Margin="3" FontSize="11px">Consider the following modules/components as impacted, event if there is no hard evidence. Insert one module per line</TextBlock>
+                                <TextBox Height="100px" Text="{Binding Path=AnalysisParameters.Filters.ForcedNodes}"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
 
-            <GroupBox Grid.Column="2"  Header="GIT analysis">
-                <StackPanel>
-                    <TextBlock TextWrapping="Wrap" Margin="3" FontSize="11px">Include all commits matching the following search parameters</TextBlock>
-                    <GroupBox Grid.Column="2"  Header="Push IDs">
-                        <StackPanel>
-                            <TextBlock TextWrapping="Wrap" Margin="3"  FontSize="11px">One hash code per line</TextBlock>
-                            <TextBox Height="100px" Text="{Binding Path=AnalysisParameters.Filters.GitCommitHashes}"></TextBox>
-                        </StackPanel>
-                    </GroupBox>
-                    <GroupBox Grid.Column="2"  Header="Comments content">
-                        <StackPanel>
-                            <TextBlock TextWrapping="Wrap" Margin="3" FontSize="11px">One expression per line</TextBlock>
-                            <TextBox Height="100px" Text="{Binding Path=AnalysisParameters.Filters.TaskIds}"></TextBox>
-                        </StackPanel>
-                    </GroupBox>
-                    <GroupBox Grid.Column="2"  Header="Force modules/components">
-                        <StackPanel>
-                            <TextBlock TextWrapping="Wrap" Margin="3" FontSize="11px">Consider the following modules/components as impacted, event if there is no hard evidence. Insert one module per line</TextBlock>
-                            <TextBox Height="100px" Text="{Binding Path=AnalysisParameters.Filters.ForcedNodes}"></TextBox>
-                        </StackPanel>
-                    </GroupBox>
-                </StackPanel>
-            </GroupBox>
 
             <GridSplitter Grid.Column="3" Width="5" HorizontalAlignment="Stretch" />
 

@@ -139,7 +139,7 @@ where TArchitectureGraphDecorator : class, IArchitectureGraphDecorator
         #region generate an architecture graph file from scratch
 
         var architectureGraphGenerator = CreateArchitectureGraphGenerator();
-        var newArchitectureGraph = await GenerateArchitectureGraph(architectureGraphGenerator, architecture, eventTriggers, cancellationToken).ConfigureAwait(false);
+        var newArchitectureGraph = await GenerateArchitectureGraph(architectureGraphGenerator, architecture, parameters, eventTriggers, cancellationToken).ConfigureAwait(false);
 
         if (newArchitectureGraph != null && newArchitectureGraph.NodeCount > 0 && newArchitectureGraph.EdgeCount > 0)
         {
@@ -159,6 +159,7 @@ where TArchitectureGraphDecorator : class, IArchitectureGraphDecorator
     protected virtual async Task<Graph> GenerateArchitectureGraph(
         [NotNull] TArchitectureGraphGenerator architectureGraphGenerator,
         IArchitecture architecture,
+        ImpactAnalysisParameters parameters,
         IAnalysisContextEventTriggers eventTriggers,
         CancellationToken cancellationToken)
     {
@@ -166,6 +167,7 @@ where TArchitectureGraphDecorator : class, IArchitectureGraphDecorator
 
         return await architectureGraphGenerator.GenerateArchitectureGraph(
                  architecture,
+                 parameters,
                  null,
                  null,
                  null,

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using DogmaSolutions.PrimitiveTypes;
 using JetBrains.Annotations;
 using Microsoft.Msagl.Core.Layout;
-using Microsoft.Msagl.Core.Routing;
 using Microsoft.Msagl.Drawing;
 using Microsoft.Msagl.Layout.Layered;
+using Edge = Microsoft.Msagl.Drawing.Edge;
 using Node = Microsoft.Msagl.Drawing.Node;
 
 namespace DogmaSolutions.ChangeImpactAnalysis;
@@ -25,14 +25,20 @@ public class ArchitectureGraphDecorator : IArchitectureGraphDecorator
 
     public Task<List<string>> Decorate(
         [NotNull] IArchitecture architecture,
-        ImpactAnalysisParameters parameters,
+        [NotNull] ImpactAnalysisParameters parameters,
         IAnalysisContextEventTriggers eventTriggers,
         [NotNull] Graph architectureGraph,
         List<string> impactedComponents,
         CancellationToken cancellationToken = default)
     {
         if (architecture == null) throw new ArgumentNullException(nameof(architecture));
+        if (parameters == null) throw new ArgumentNullException(nameof(parameters));
         if (architectureGraph == null) throw new ArgumentNullException(nameof(architectureGraph));
+
+        if (parameters.RemoveRedundantDependencies)
+        {
+            RemoveRedundantDependencies(architectureGraph);
+        }
 
         foreach (var layer in architecture.Layers)
         {
@@ -45,6 +51,72 @@ public class ArchitectureGraphDecorator : IArchitectureGraphDecorator
 
         return Task.FromResult(markedNodes);
     }
+
+    protected virtual void RemoveRedundantDependencies([NotNull] Graph graph)
+    {
+        if (graph == null) throw new ArgumentNullException(nameof(graph));
+
+        foreach (var outerNode in graph.Nodes.ToArray())
+        {
+            var innerNodes = graph.Nodes.Where(n => !Equals(n, outerNode)).ToArray();
+            foreach (var innerNode in innerNodes)
+            {
+                var allPaths = FindPaths(outerNode, innerNode);
+                if (allPaths.Count > 1)
+                {
+                    var directPathExists = allPaths.Any(path => path.Count == 2);
+                    if (directPathExists)
+                    {
+                        var edgesToRemove = graph.Edges.Where(edge => edge.Source == outerNode.Id && edge.Target == innerNode.Id).ToArray();
+                        foreach (var edge in edgesToRemove)
+                        {
+                            graph.RemoveEdge(edge);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    protected virtual List<List<string>> FindPaths([NotNull] Node source, [NotNull] Node target)
+    {
+        if (source == null) throw new ArgumentNullException(nameof(source));
+        if (target == null) throw new ArgumentNullException(nameof(target));
+
+        var retPaths = new List<List<string>>();
+        foreach (var sourceOutEdge in source.OutEdges)
+        {
+            var path = new List<string>();
+            Navigate(retPaths, path, source.Id, target.Id, sourceOutEdge);
+        }
+
+        return retPaths;
+    }
+
+    private static void Navigate(List<List<string>> allPaths, List<string> currentPath, string startingSource, string searchedTarget, Edge currentEdge)
+    {
+        if (currentPath.Count == 0)
+        {
+            currentPath.Add(currentEdge.Source);
+        }
+
+        currentPath.Add(currentEdge.Target);
+
+        if (currentEdge.Target == searchedTarget)
+        {
+            // match found
+            allPaths.Add(currentPath);
+            return;
+        }
+
+        // match not found
+        foreach (var targetOutEdge in currentEdge.TargetNode.OutEdges)
+        {
+            var clonedPath = new List<string>(currentPath);
+            Navigate(allPaths, clonedPath, startingSource, searchedTarget, targetOutEdge);
+        }
+    }
+
 
     protected virtual void ApplyStyle([NotNull] IArchitecture architecture,
         ImpactAnalysisParameters parameters,
@@ -60,8 +132,7 @@ public class ArchitectureGraphDecorator : IArchitectureGraphDecorator
         architectureGraph.LayoutAlgorithmSettings.PackingMethod = PackingMethod.Columns;
         architectureGraph.LayoutAlgorithmSettings.NodeSeparation = 30;
         architectureGraph.LayoutAlgorithmSettings.ClusterMargin = 50;
-        architectureGraph.LayoutAlgorithmSettings.EdgeRoutingSettings.EdgeRoutingMode = EdgeRoutingMode.SugiyamaSplines;
-        architectureGraph.LayoutAlgorithmSettings.EdgeRoutingSettings.ConeAngle = 5;
+
     }
 
     protected virtual List<string> DecorateImpactedNodes([NotNull] IArchitecture architecture, [NotNull] Graph architectureGraph, List<string> impactedComponents)

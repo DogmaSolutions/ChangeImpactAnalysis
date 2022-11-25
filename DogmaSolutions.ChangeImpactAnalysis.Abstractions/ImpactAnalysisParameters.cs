@@ -10,6 +10,7 @@ public class ImpactAnalysisParameters  :INotifyPropertyChanged
     private string _architectureGraphFileName;
     private string _impactedArchitectureGraphFileName;
     private ImpactAnalysisFilters _filters = new ImpactAnalysisFilters();
+    private bool _removeRedundantDependencies = true;
 
     public string ArtifactsBaseFolderPath
     {
@@ -33,6 +34,12 @@ public class ImpactAnalysisParameters  :INotifyPropertyChanged
     {
         get => _filters;
         set => SetField(ref _filters, value);
+    }
+
+    public bool RemoveRedundantDependencies
+    {
+        get => _removeRedundantDependencies;
+        set => SetField(ref _removeRedundantDependencies, value);
     }
 
     public event PropertyChangedEventHandler PropertyChanged;

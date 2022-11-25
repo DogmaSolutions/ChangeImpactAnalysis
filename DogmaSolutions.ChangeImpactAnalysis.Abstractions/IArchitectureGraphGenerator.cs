@@ -13,6 +13,7 @@ namespace DogmaSolutions.ChangeImpactAnalysis
     {
         Task<Graph> GenerateArchitectureGraph(
             IArchitecture architecture,
+            ImpactAnalysisParameters parameters,
             Func<PackageSpec, bool> packageSpecFilter = null,
             Func<IList<TargetFrameworkInformation>, ICollection<TargetFrameworkInformation>> targetFrameworkFilter = null,
             Func<IList<LibraryDependency>, IEnumerable<LibraryDependency>> libraryDependencyFilter = null,

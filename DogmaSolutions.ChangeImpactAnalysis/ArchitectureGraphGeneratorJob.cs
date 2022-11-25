@@ -11,12 +11,17 @@ using DogmaSolutions.Validation;
 using JetBrains.Annotations;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Msagl.Core.Layout;
+using Microsoft.Msagl.Core.Routing;
 using Microsoft.Msagl.Drawing;
+using Microsoft.Msagl.Layout.Layered;
 using NuGet.Common;
 using NuGet.LibraryModel;
 using NuGet.Packaging.Core;
 using NuGet.ProjectModel;
+using Edge = Microsoft.Msagl.Drawing.Edge;
 using ILogger = NuGet.Common.ILogger;
+using Node = Microsoft.Msagl.Drawing.Node;
 
 namespace DogmaSolutions.ChangeImpactAnalysis;
 
@@ -33,12 +38,14 @@ public class ArchitectureGraphGeneratorJob : IDisposable
     [NotNull] private readonly Graph _graph;
     [NotNull] private readonly IServiceProvider _serviceProvider;
     [NotNull] private readonly IArchitecture _architecture;
+    private readonly ImpactAnalysisParameters _parameters;
     [NotNull] private readonly ILogger<ArchitectureGraphGeneratorJob> _logger;
     private bool _isDisposed;
 
     public ArchitectureGraphGeneratorJob(
         [NotNull] IServiceProvider serviceProvider,
         [NotNull] IArchitecture architecture,
+        [NotNull] ImpactAnalysisParameters parameters,
         [CanBeNull] Func<PackageSpec, bool> packageSpecFilter = null,
         [CanBeNull] Func<IList<TargetFrameworkInformation>, ICollection<TargetFrameworkInformation>> targetFrameworkFilter = null,
         [CanBeNull] Func<IList<LibraryDependency>, IEnumerable<LibraryDependency>> libraryDependencyFilter = null,
@@ -49,6 +56,7 @@ public class ArchitectureGraphGeneratorJob : IDisposable
         _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
         _logger = _serviceProvider.GetRequiredService<ILogger<ArchitectureGraphGeneratorJob>>();
         _architecture = architecture ?? throw new ArgumentNullException(nameof(architecture));
+        _parameters = parameters ?? throw new ArgumentNullException(nameof(parameters));
 
         _logger.LogInformation("Validating the provided architecture file");
         _architecture.ValidateDataAnnotations();
@@ -188,7 +196,7 @@ public class ArchitectureGraphGeneratorJob : IDisposable
             var end = DateTime.UtcNow;
             var elapsed = end - start;
             _logger.LogInformation("Architecture analysis job successfully completed after {Delay}", elapsed);
-
+          
             return _graph;
         }
         catch (Exception exc)
@@ -203,9 +211,8 @@ public class ArchitectureGraphGeneratorJob : IDisposable
             _globalSemaphore.Release();
         }
     }
-
-
-    private Task<LockFile> GetLockFile(string projectPath, string outputPath)
+   
+    protected virtual Task<LockFile> GetLockFile(string projectPath, string outputPath)
     {
         // Run the restore command
         var dotNetRunner = new DotNetRunner();
@@ -219,7 +226,7 @@ public class ArchitectureGraphGeneratorJob : IDisposable
         return GetLockFile(lockFilePath, NullLogger.Instance);
     }
 
-    private async Task<LockFile> GetLockFile(string lockFilePath, ILogger logger)
+    protected virtual async Task<LockFile> GetLockFile(string lockFilePath, ILogger logger)
     {
         if (!File.Exists(lockFilePath))
             return null;
@@ -230,7 +237,7 @@ public class ArchitectureGraphGeneratorJob : IDisposable
         return lockFile;
     }
 
-    private async Task AnalyzeDependency(
+    protected virtual async Task AnalyzeDependency(
         string parentNode,
         LockFileTargetLibrary projectLibrary,
         object packageDependency,
@@ -269,7 +276,7 @@ public class ArchitectureGraphGeneratorJob : IDisposable
             ConfigureAwait(false);
     }
 
-    private async Task<Edge> SafeAddEdge(string from, string to, CancellationToken cancellationToken)
+    protected virtual async Task<Edge> SafeAddEdge(string from, string to, CancellationToken cancellationToken)
     {
         if (_isDisposed)
             throw new ObjectDisposedException("The job has been disposed");
