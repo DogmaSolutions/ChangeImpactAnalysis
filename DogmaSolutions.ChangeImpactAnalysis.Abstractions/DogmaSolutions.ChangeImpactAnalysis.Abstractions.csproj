@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <RootNamespace>DogmaSolutions.ChangeImpactAnalysis</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="DogmaSolutions.Tasking" Version="3.*" />    
+        <PackageReference Include="NuGet.ProjectModel" Version="*" />
+        <PackageReference Include="AutomaticGraphLayout.Drawing" Version="1.*" />
+    </ItemGroup>
+
+</Project>

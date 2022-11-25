@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+
+    <ItemGroup>
+        <PackageReference Include="newtonsoft.json" Version="*" />
+        <PackageReference Include="NuGet.ProjectModel" Version="*" />
+        <PackageReference Include="AutomaticGraphLayout.Drawing" Version="1.*" />
+        <PackageReference Include="AutomaticGraphLayout" Version="1.*" />
+        <PackageReference Include="AutomaticGraphLayout.GraphViewerGDI" Version="1.*" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.*" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\DogmaSolutions.ChangeImpactAnalysis.Abstractions\DogmaSolutions.ChangeImpactAnalysis.Abstractions.csproj" />
+        <ProjectReference Include="..\DogmaSolutions.ChangeImpactAnalysis\DogmaSolutions.ChangeImpactAnalysis.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="Sample_Architecture_01.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+</Project>

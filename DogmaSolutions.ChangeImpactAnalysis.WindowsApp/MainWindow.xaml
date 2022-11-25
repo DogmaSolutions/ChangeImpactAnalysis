@@ -1,0 +1,192 @@
+<Window x:Class="DogmaSolutions.ChangeImpactAnalysis.WindowsApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DogmaSolutions.ChangeImpactAnalysis.WindowsApp"
+        xmlns:wpfGraphControl="http://mlsagl"  
+        mc:Ignorable="d"
+        Title="Dogma Solutions - Impact Analysis" Height="800" Width="1024" Icon="/DogmaSolutions.ico" >
+    <Window.Resources>
+        <local:ColorToBrushConverter x:Key="ColorToBrushConverter"/>
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="Open" CanExecute="OpenFromFileCommand_CanExecute" Executed="OpenFromFileCommand_Executed" />
+        <CommandBinding Command="Close" CanExecute="ExitCommand_CanExecute" Executed="ExitCommand_Executed" />
+        <CommandBinding Command="Play" CanExecute="PlayCommand_CanExecute" Executed="PlayCommand_Executed" />
+        <CommandBinding Command="Stop" CanExecute="StopCommand_CanExecute" Executed="StopCommand_Executed" />
+        <CommandBinding Command="{x:Static local:MainWindowCommands.ExportToSvgRoutedCommand}" Executed="ExportToSvgRouted_Executed" CanExecute="ExportToSvgRouted_CanExecute" />
+    </Window.CommandBindings>
+
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Command="Open" Header="Open achitecture descriptor" />
+                <Separator />
+                <MenuItem Command="Close" Header="Exit application"/>
+            </MenuItem>
+            <MenuItem Command="Play" Header="Start" />
+            <MenuItem Command="Stop" Header="Stop"/>
+            <MenuItem Command="{x:Static local:MainWindowCommands.ExportToSvgRoutedCommand}" Header="Export to SVG..."/>
+        </Menu>
+
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" MinWidth="100" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="200" />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <StatusBarItem>
+                <TextBlock Text="{Binding Path=FileName}" />
+            </StatusBarItem>
+            <Separator Grid.Column="1" />
+            <StatusBarItem Grid.Column="2">
+                <TextBlock Text="{Binding Path=CurrentOperation}" />
+            </StatusBarItem>
+            <Separator Grid.Column="3" />
+            <StatusBarItem Grid.Column="4">
+                <ProgressBar Value="{Binding Path=ProgressPercentage}"  Width="190" Height="16" />
+            </StatusBarItem>
+        </StatusBar>
+
+
+        <Grid DockPanel.Dock="Bottom" Margin="2 5 2 2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="250" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <GroupBox Header="Layers">
+                <ListBox  ItemsSource="{Binding Path=Architecture.Layers}"  IsSynchronizedWithCurrentItem="True" Margin="2 5 2 2">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel VerticalAlignment="Top"  Orientation="Vertical">
+                                <VirtualizingStackPanel.LayoutTransform>
+                                    <ScaleTransform ScaleX="1" ScaleY="-1" />
+                                </VirtualizingStackPanel.LayoutTransform>
+                            </VirtualizingStackPanel>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="LayoutTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="1" ScaleY="-1" />
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Background" Value="{Binding Path=VisualAttributes.NodeBackground, Converter={StaticResource ColorToBrushConverter}}">
+                            </Setter>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListBoxItem">
+                                        <Border Name="_Border"
+                                                Padding="2"
+                                                SnapsToDevicePixels="true"  
+                                                BorderThickness="1"
+                                                >
+                                            <ContentPresenter />
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsSelected" Value="true">
+                                                <Setter TargetName="_Border" Property="Background" Value="{Binding Path=VisualAttributes.NodeBackground, Converter={StaticResource ColorToBrushConverter}}"/>
+                                                <Setter Property="Foreground" Value="Red"/>
+                                            </Trigger>
+                                            <Trigger Property="IsSelected" Value="false">
+                                                <Setter TargetName="_Border" Property="Background" Value="{Binding Path=VisualAttributes.NodeBackground, Converter={StaticResource ColorToBrushConverter}}"/>
+                                                <Setter Property="Foreground" Value="Black"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="2 2 2 10" HorizontalAlignment="Stretch">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" DockPanel.Dock="Top" Text="{Binding Path=Name}" FontSize="16px" TextWrapping="Wrap" Margin="2 5 2 2" HorizontalAlignment="Stretch" />
+                                <TextBlock Grid.Row="1" DockPanel.Dock="Bottom" Text="{Binding Path=Description}" FontSize="12px" TextWrapping="Wrap" Margin="2 5 2 2" HorizontalAlignment="Stretch" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+            </GroupBox>
+
+            <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+
+            <GroupBox Grid.Column="2"  Header="GIT analysis">
+                <StackPanel>
+                    <TextBlock TextWrapping="Wrap" Margin="3" FontSize="11px">Include all commits matching the following search parameters</TextBlock>
+                    <GroupBox Grid.Column="2"  Header="Push IDs">
+                        <StackPanel>
+                            <TextBlock TextWrapping="Wrap" Margin="3"  FontSize="11px">One hash code per line</TextBlock>
+                            <TextBox Height="100px" Text="{Binding Path=AnalysisParameters.Filters.GitCommitHashes}"></TextBox>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Grid.Column="2"  Header="Comments content">
+                        <StackPanel>
+                            <TextBlock TextWrapping="Wrap" Margin="3" FontSize="11px">One expression per line</TextBlock>
+                            <TextBox Height="100px" Text="{Binding Path=AnalysisParameters.Filters.TaskIds}"></TextBox>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Grid.Column="2"  Header="Force modules/components">
+                        <StackPanel>
+                            <TextBlock TextWrapping="Wrap" Margin="3" FontSize="11px">Consider the following modules/components as impacted, event if there is no hard evidence. Insert one module per line</TextBlock>
+                            <TextBox Height="100px" Text="{Binding Path=AnalysisParameters.Filters.ForcedNodes}"></TextBox>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+            </GroupBox>
+
+            <GridSplitter Grid.Column="3" Width="5" HorizontalAlignment="Stretch" />
+
+            <TabControl DockPanel.Dock="Bottom" Margin="2 5 2 2" Grid.Column="4" >
+                <TabItem Header="Logs">
+                    <ListBox  ItemsSource="{Binding Path=Logs}"  IsSynchronizedWithCurrentItem="True">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="[" />
+                                    <TextBlock Text="{Binding Path=LogLevel}" />
+                                    <TextBlock Text="] " />
+                                    <TextBlock Text="{Binding Path=TimeStamp}" />
+                                    <TextBlock Text=" - " />
+                                    <TextBlock Text="{Binding Path=Message}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </TabItem>
+                <TabItem Header="Graph">
+                    <wpfGraphControl:AutomaticGraphLayoutControl Graph="{Binding Path=AnalysisDescriptor.ArchitectureGraph}"   />
+                </TabItem>
+                <TabItem Header="Impact analysis">
+                    <TextBox Text="{Binding Path=AnalysisDescriptor.Report}"></TextBox>
+                </TabItem>
+            </TabControl>
+        </Grid>
+
+
+
+
+
+
+    </DockPanel>
+</Window>

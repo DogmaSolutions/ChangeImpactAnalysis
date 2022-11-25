@@ -1,0 +1,345 @@
+﻿[*.cs]
+
+# CA1806: Do not ignore method results
+dotnet_diagnostic.CA1806.severity = error
+
+# CA1305: Specify IFormatProvider
+dotnet_diagnostic.CA1305.severity = error
+
+# CA1304: Specify CultureInfo
+dotnet_diagnostic.CA1304.severity = error
+
+# CA1816: Call GC.SuppressFinalize correctly
+dotnet_diagnostic.CA1816.severity = error
+
+# CA1823: Avoid unused private fields
+dotnet_diagnostic.CA1823.severity = error
+
+# CA1827: Do not use Count/LongCount when Any can be used
+dotnet_diagnostic.CA1827.severity = error
+
+# CA1828: Do not use CountAsync/LongCountAsync when AnyAsync can be used
+dotnet_diagnostic.CA1828.severity = error
+
+# CA1829: Use Length/Count property instead of Enumerable.Count method
+dotnet_diagnostic.CA1829.severity = error
+
+# CA1837: Use Environment.ProcessId instead of Process.GetCurrentProcess().Id
+dotnet_diagnostic.CA1837.severity = error
+
+# CA1505: Avoid unmaintainable code
+dotnet_diagnostic.CA1505.severity = error
+
+# CA1506: Avoid excessive class coupling
+dotnet_diagnostic.CA1506.severity = warning
+
+# CA1822: Mark members as static
+dotnet_diagnostic.CA1822.severity = none
+
+# CA2227: Collection properties should be read only
+dotnet_diagnostic.CA2227.severity = none
+
+# CA2007: Consider calling ConfigureAwait on the awaited task
+dotnet_diagnostic.CA2007.severity = error
+
+# CA1707: Identifiers should not contain underscores
+dotnet_diagnostic.CA1707.severity = none
+
+# CA1031: Do not catch general exception types
+dotnet_diagnostic.CA1031.severity = none
+
+# CA1040: Avoid empty interfaces
+dotnet_diagnostic.CA1040.severity = none
+
+# CA1052: Type is a static holder type but is neither static nor NotInheritable
+dotnet_diagnostic.CA1052.severity = error
+
+# CA1056: URI-like properties should not be strings
+dotnet_diagnostic.CA1056.severity = none
+
+# CA1308: Normalize strings to uppercase
+dotnet_diagnostic.CA1308.severity = none
+
+# CA1032: Implement standard exception constructors
+dotnet_diagnostic.CA1032.severity = none
+
+# CA1801: Review unused parameters
+dotnet_diagnostic.CA1801.severity = none
+
+# CA1720: Identifier contains type name
+dotnet_diagnostic.CA1720.severity = suggestion
+
+# CA1721: Property names should not match get methods
+dotnet_diagnostic.CA1721.severity = none
+
+# CS4014: Because this call is not awaited, execution of the current method continues before the call is completed. Consider applying the await operator to the result of the call.
+dotnet_diagnostic.CS4014.severity = error
+
+# CA1805: Do not initialize unnecessarily
+dotnet_diagnostic.CA1805.severity = error
+
+# CA2213: Disposable fields should be disposed
+dotnet_diagnostic.CA2213.severity = error
+
+# CS0168: Variable is declared but never used
+dotnet_diagnostic.CS0168.severity = error
+      
+# CA1062: In externally visible method validate parameter is non-null before using it. If appropriate, throw an ArgumentNullException when the argument is null or add a Code Contract precondition asserting non-null argument.
+dotnet_diagnostic.CA1062.severity = error
+
+# CA1810: Initialize reference type static fields inline
+dotnet_diagnostic.CA1810.severity = error
+
+# CA1310: Specify StringComparison for correctness
+dotnet_diagnostic.CA1310.severity = error
+
+# CA1716: Rename virtual/interface member so that it no longer conflicts with the reserved language keyword 'Call'. Using a reserved keyword as the name of a virtual/interface member makes it harder for consumers in other languages to override/implement the member.
+dotnet_diagnostic.CA1716.severity = suggestion
+
+# LindhartAnalyserMissingAwaitWarning: Possible missing await keyword
+dotnet_diagnostic.LindhartAnalyserMissingAwaitWarning.severity = error
+
+# CA1054: URI-like parameters should not be strings
+dotnet_diagnostic.CA1054.severity = suggestion
+
+# VSTHRD100: Avoid async void methods
+dotnet_diagnostic.VSTHRD100.severity = error
+
+# VSTHRD101: Avoid unsupported async delegates
+dotnet_diagnostic.VSTHRD101.severity = error
+
+# VSTHRD110: Observe result of async calls
+dotnet_diagnostic.VSTHRD110.severity = error
+
+# VSTHRD114: Avoid returning a null Task
+dotnet_diagnostic.VSTHRD114.severity = error
+
+# VSTHRD200: Use "Async" suffix for async methods
+dotnet_diagnostic.VSTHRD200.severity = none
+
+# IDE0005: Using directive is unnecessary.
+dotnet_diagnostic.IDE0005.severity = error
+
+# CA2016: Forward the CancellationToken parameter to methods that take one
+dotnet_diagnostic.CA2016.severity = error
+
+# CA1825: Avoid zero-length array allocations
+dotnet_diagnostic.CA1825.severity = error
+
+# CS1998: This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.
+dotnet_diagnostic.CS1998.severity = error
+
+# CA1068: CancellationToken parameters must come last
+dotnet_diagnostic.CA1068.severity = error
+
+# VSTHRD103: Result synchronously blocks. Use await instead.
+dotnet_diagnostic.VSTHRD103.severity = error
+
+# CA2211: Non-constant fields should not be visible
+dotnet_diagnostic.CA2211.severity = error
+
+# CA1051: Do not declare visible instance fields
+dotnet_diagnostic.CA1051.severity = error
+
+# VSTHRD002: Synchronously waiting on tasks or awaiters may cause deadlocks. Use await or JoinableTaskFactory.Run instead.
+dotnet_diagnostic.VSTHRD002.severity = error
+
+# NU1603: A package dependency specified a version that could not be found. Typically, the package sources do not contain the expected lower bound version. A higher version was used instead, which differs from what the package was authored against.
+dotnet_diagnostic.NU1603.severity = suggestion
+
+# CA2208: Instantiate argument exceptions correctly
+dotnet_diagnostic.CA2208.severity = error
+
+# CA1063: Provide an overridable implementation of Dispose(bool) or mark the type as sealed. A call to Dispose(false) should only clean up native resources. A call to Dispose(true) should clean up both managed and native resources. Modify the class so that it calls Dispose(true), then calls GC.SuppressFinalize on the current object instance ('this' or 'Me' in Visual Basic), and then returns
+dotnet_diagnostic.CA1063.severity = error
+
+# CA1819: Properties should not return arrays
+dotnet_diagnostic.CA1819.severity = suggestion
+
+# CA1028: If possible, make the underlying type System.Int32 instead of long
+dotnet_diagnostic.CA1028.severity = suggestion
+
+# CA1717: Only FlagsAttribute enums should have plural names
+dotnet_diagnostic.CA1717.severity = suggestion
+
+# RS0030: Don't use DateTime.Now in a i18n-compliant system. Use DateTime.UtcNow instead
+dotnet_diagnostic.RS0030.severity = error
+
+# PH2071: Duplicated shape found
+dotnet_diagnostic.PH2071.severity = suggestion
+dotnet_diagnostic.PH2071.token_count=80
+dotnet_code_quality.PH2071.severity = suggestion
+dotnet_code_quality.PH2071.token_count=80
+
+# CA1713: Events should not have 'Before' or 'After' prefix
+dotnet_diagnostic.CA1713.severity = suggestion
+
+# CS0108: Use the new keyword if hiding was intended.
+dotnet_diagnostic.CS0108.severity = suggestion
+
+# CA1303 Method passes a literal string as parameter 'format' of a call to. Retrieve the following string(s) from a resource table instead:
+dotnet_diagnostic.CA1303.severity = suggestion
+
+# CA1724: The type name conflicts in whole or in part with the namespace name. Change either name to eliminate the conflict.
+dotnet_diagnostic.CA1724.severity = suggestion
+
+# CA1001: Types that own disposable fields should be disposable
+dotnet_diagnostic.CA1001.severity = error
+
+# CA2213: Disposable fields should be disposed
+dotnet_diagnostic.CA2213.severity = error
+
+# CA2100: Review SQL queries for security vulnerabilities
+dotnet_diagnostic.CA2100.severity = error
+
+indent_style = space
+indent_size = 3
+tab_width = 1
+
+# Microsoft .NET properties
+csharp_new_line_before_members_in_object_initializers = false
+csharp_preferred_modifier_order = public, private, protected, internal, new, abstract, virtual, sealed, override, static, readonly, extern, unsafe, volatile, async:suggestion
+csharp_style_var_elsewhere = true:suggestion
+csharp_style_var_for_built_in_types = true:suggestion
+csharp_style_var_when_type_is_apparent = true:suggestion
+
+dotnet_naming_rule.constants_rule.severity = warning
+dotnet_naming_rule.constants_rule.style = all_upper
+dotnet_naming_rule.constants_rule.symbols = constants_symbols
+dotnet_naming_rule.private_constants_rule.severity = warning
+dotnet_naming_rule.private_constants_rule.style = all_upper
+dotnet_naming_rule.private_constants_rule.symbols = private_constants_symbols
+dotnet_naming_rule.private_static_readonly_rule.severity = warning
+dotnet_naming_rule.private_static_readonly_rule.style = lower_camel_case_style
+dotnet_naming_rule.private_static_readonly_rule.symbols = private_static_readonly_symbols
+dotnet_naming_rule.public_fields_rule.severity = warning
+dotnet_naming_rule.public_fields_rule.style = upper_camel_case_style
+dotnet_naming_rule.public_fields_rule.symbols = public_fields_symbols
+dotnet_naming_rule.static_readonly_rule.severity = warning
+dotnet_naming_rule.static_readonly_rule.style = upper_camel_case_style
+dotnet_naming_rule.static_readonly_rule.symbols = static_readonly_symbols
+dotnet_naming_style.lower_camel_case_style.capitalization = camel_case
+dotnet_naming_style.lower_camel_case_style.required_prefix = _
+dotnet_naming_style.upper_camel_case_style.capitalization = pascal_case
+dotnet_naming_symbols.constants_symbols.applicable_accessibilities = public,internal,protected,protected_internal,private_protected
+dotnet_naming_symbols.constants_symbols.applicable_kinds = field
+dotnet_naming_symbols.constants_symbols.required_modifiers = const
+dotnet_naming_symbols.private_constants_symbols.applicable_accessibilities = private
+dotnet_naming_symbols.private_constants_symbols.applicable_kinds = field
+dotnet_naming_symbols.private_constants_symbols.required_modifiers = const
+dotnet_naming_symbols.private_static_readonly_symbols.applicable_accessibilities = private
+dotnet_naming_symbols.private_static_readonly_symbols.applicable_kinds = field
+dotnet_naming_symbols.private_static_readonly_symbols.required_modifiers = static,readonly
+dotnet_naming_symbols.public_fields_symbols.applicable_accessibilities = public,internal,protected,protected_internal,private_protected
+dotnet_naming_symbols.public_fields_symbols.applicable_kinds = field
+dotnet_naming_symbols.static_readonly_symbols.applicable_accessibilities = public,internal,protected,protected_internal,private_protected
+dotnet_naming_symbols.static_readonly_symbols.applicable_kinds = field
+dotnet_naming_symbols.static_readonly_symbols.required_modifiers = static,readonly
+dotnet_style_parentheses_in_arithmetic_binary_operators = never_if_unnecessary:none
+dotnet_style_parentheses_in_other_binary_operators = never_if_unnecessary:none
+dotnet_style_parentheses_in_relational_binary_operators = never_if_unnecessary:none
+dotnet_style_predefined_type_for_locals_parameters_members = true:suggestion
+dotnet_style_predefined_type_for_member_access = true:suggestion
+dotnet_style_qualification_for_event = false:suggestion
+dotnet_style_qualification_for_field = false:suggestion
+dotnet_style_qualification_for_method = false:suggestion
+dotnet_style_qualification_for_property = false:suggestion
+dotnet_style_require_accessibility_modifiers = for_non_interface_members:suggestion
+
+# ReSharper properties
+resharper_autodetect_indent_settings = true
+resharper_cpp_indent_size = 4
+resharper_cpp_tab_width = 4
+resharper_csharp_indent_size = 3
+resharper_csharp_max_line_length = 175
+resharper_csharp_naming_rule.constants = AaBb, AA_BB
+resharper_csharp_naming_rule.private_constants = AaBb
+resharper_csharp_naming_rule.public_fields = AaBb, AA_BB
+resharper_csharp_naming_rule.static_readonly = AaBb
+resharper_csharp_place_type_constraints_on_same_line = false
+resharper_csharp_tab_width = 1
+resharper_csharp_wrap_after_declaration_lpar = true
+resharper_csharp_wrap_after_invocation_lpar = true
+resharper_csharp_wrap_arguments_style = chop_if_long
+resharper_csharp_wrap_before_first_type_parameter_constraint = true
+resharper_csharp_wrap_extends_list_style = chop_if_long
+resharper_csharp_wrap_parameters_style = chop_if_long
+resharper_html_indent_size = 4
+resharper_html_tab_width = 4
+resharper_max_formal_parameters_on_line = 5
+resharper_max_invocation_arguments_on_line = 4
+resharper_place_simple_anonymousmethod_on_single_line = false
+resharper_resx_indent_size = 4
+resharper_resx_tab_width = 4
+resharper_show_autodetect_configure_formatting_tip = false
+resharper_use_indent_from_vs = false
+resharper_vb_indent_size = 4
+resharper_vb_tab_width = 4
+resharper_wrap_after_dot_in_method_calls = true
+resharper_wrap_chained_binary_expressions = chop_if_long
+resharper_wrap_chained_method_calls = chop_if_long
+resharper_xmldoc_indent_size = 4
+resharper_xmldoc_tab_width = 4
+resharper_xml_indent_size = 4
+resharper_xml_tab_width = 4
+
+# ReSharper inspection severities
+resharper_arrange_redundant_parentheses_highlighting = hint
+resharper_arrange_this_qualifier_highlighting = hint
+resharper_arrange_type_member_modifiers_highlighting = hint
+resharper_arrange_type_modifiers_highlighting = hint
+resharper_built_in_type_reference_style_for_member_access_highlighting = hint
+resharper_built_in_type_reference_style_highlighting = hint
+resharper_heap_view_boxing_allocation_highlighting = none
+resharper_heap_view_closure_allocation_highlighting = none
+resharper_heap_view_delegate_allocation_highlighting = none
+resharper_heap_view_object_allocation_evident_highlighting = none
+resharper_heap_view_object_allocation_highlighting = none
+resharper_identifier_typo_highlighting = none
+resharper_razor_section_not_resolved_highlighting = none
+resharper_redundant_base_qualifier_highlighting = warning
+resharper_string_literal_typo_highlighting = none
+resharper_suggest_var_or_type_built_in_types_highlighting = hint
+resharper_suggest_var_or_type_elsewhere_highlighting = hint
+resharper_suggest_var_or_type_simple_types_highlighting = hint
+resharper_unused_auto_property_accessor_global_highlighting = suggestion
+resharper_web_config_module_not_resolved_highlighting = warning
+resharper_web_config_type_not_resolved_highlighting = warning
+resharper_web_config_wrong_module_highlighting = warning
+
+[*]
+charset = utf-8
+end_of_line = crlf
+trim_trailing_whitespace = false
+insert_final_newline = false
+indent_style = space
+indent_size = 4
+
+[{*.har,*.jsb2,*.jsb3,*.json,.babelrc,.eslintrc,.stylelintrc,bowerrc,jest.config}]
+indent_style = space
+indent_size = 2
+
+[*.less]
+indent_style = space
+indent_size = 2
+
+[*.scss]
+indent_style = space
+indent_size = 2
+
+[*.styl]
+indent_style = space
+indent_size = 2
+
+[{*.yaml,*.yml}]
+indent_style = space
+indent_size = 2
+
+[*.js.map]
+indent_style = space
+indent_size = 2
+
+[*.{appxmanifest,asax,ascx,aspx,axaml,build,cg,cginc,compute,cshtml,dtd,hlsl,hlsli,hlslinc,master,nuspec,paml,razor,resw,resx,skin,usf,ush,vb,xaml,xamlx,xoml,xsd}]
+indent_style = space
+indent_size = 4
+tab_width = 4

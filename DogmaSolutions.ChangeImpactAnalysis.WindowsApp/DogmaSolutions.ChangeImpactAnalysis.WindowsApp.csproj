@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net6.0-windows</TargetFramework>
+        <UseWPF>true</UseWPF>
+        <UseWindowsForms>true</UseWindowsForms>
+        <ApplicationIcon>DogmaSolutions.ico</ApplicationIcon>
+        <RootNamespace>DogmaSolutions.ChangeImpactAnalysis.WindowsApp</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <None Remove="DogmaSolutions.ico" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Resource Include="DogmaSolutions.ico">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="DogmaSolutions.Json" Version="3.*" />
+        <PackageReference Include="DogmaSolutions.SlidingWindowLogger" Version="3.*" />
+        <PackageReference Include="newtonsoft.json" Version="*" />
+        <PackageReference Include="NuGet.ProjectModel" Version="*" />
+        <PackageReference Include="AutomaticGraphLayout.Drawing" Version="1.*" />
+        <PackageReference Include="AutomaticGraphLayout" Version="1.*" />
+        <PackageReference Include="AutomaticGraphLayout.GraphViewerGDI" Version="1.*" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.*" />
+        <PackageReference Include="AutomaticGraphLayout.WpfGraphControl" Version="1.*" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="6.*" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="appsettings.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="log4net.config">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\DogmaSolutions.ChangeImpactAnalysis.Abstractions\DogmaSolutions.ChangeImpactAnalysis.Abstractions.csproj" />
+        <ProjectReference Include="..\DogmaSolutions.ChangeImpactAnalysis.Sample01\DogmaSolutions.ChangeImpactAnalysis.Sample01.csproj" />
+        <ProjectReference Include="..\DogmaSolutions.ChangeImpactAnalysis\DogmaSolutions.ChangeImpactAnalysis.csproj" />
+    </ItemGroup>
+
+</Project>
