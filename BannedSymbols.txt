@@ -1,0 +1,1 @@
+P:System.DateTime.Now;In a i18n-compliant system, it's almost never a good idea to use System.DateTime.Now. Please use System.DateTime.UtcNow instead. If you are sure you want to use System.DateTime.Now, use a '#pragma warning disable RS0030 / #pragma warning restore RS0030' directives pair

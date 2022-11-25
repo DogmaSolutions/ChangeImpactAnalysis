@@ -1,0 +1,87 @@
+{
+  "Name": "Sample01",
+  "Description": "Sample 01",
+  "AnalyzerType": "DogmaSolutions.ChangeImpactAnalysis.Sample01.MyProductImpactAnalyzer, DogmaSolutions.ChangeImpactAnalysis.Sample01",
+  "Layers": [
+    {
+      "Name": "Common utils",
+      "Description": "Sample layer 1",
+      "IdentifiersPrefix": "CommonUtils",
+      "GitRepositoryLocations": [ "J:\\MyCompany.CommonUtils" ],
+      "SolutionFileLocation": "J:\\MyCompany.CommonUtils\\CommonUtils.sln",
+      "VisualAttributes": {
+        "NodeBackground": "#ccffff",
+        "NodeBorder": "Black",
+        "NodeText": "Black",
+        "ImpactedNodeBackground": "#ccffff",
+        "ImpactedNodeBorder": "Red",
+        "ImpactedNodeText": "Red",
+        "ImpactedEdgeColor": "Red"
+      }
+    },
+    {
+      "Name": "Data models",
+      "Description": "Sample layer 2",
+      "IdentifiersPrefix": "DataModels",
+      "GitRepositoryLocations": [ "J:\\MyCompany.DataModels" ],
+      "SolutionFileLocation": "J:\\MyCompany.DataModels\\DataModels.sln",
+      "VisualAttributes": {
+        "NodeBackground": "#ccffcc",
+        "NodeBorder": "Black",
+        "NodeText": "Black",
+        "ImpactedNodeBackground": "#ccffcc",
+        "ImpactedNodeBorder": "Red",
+        "ImpactedNodeText": "Red",
+        "ImpactedEdgeColor": "Red"
+      }
+    },
+    {
+      "Name": "Data Access",
+      "Description": "Sample layer 3",
+      "IdentifiersPrefix": "DataAccess",
+      "GitRepositoryLocations": [ "J:\\MyCompany.DataAccess" ],
+      "SolutionFileLocation": "J:\\MyCompany.DataAccess\\DataAccess.sln",
+      "VisualAttributes": {
+        "NodeBackground": "#ffcc99",
+        "NodeBorder": "Black",
+        "NodeText": "Black",
+        "ImpactedNodeBackground": "#ffcc99",
+        "ImpactedNodeBorder": "Red",
+        "ImpactedNodeText": "Red",
+        "ImpactedEdgeColor": "Red"
+      }
+    },
+    {
+      "Name": "Business logics",
+      "Description": "Sample layer 4",
+      "IdentifiersPrefix": "BusinessLogics",
+      "GitRepositoryLocations": [ "J:\\MyCompany.BusinessLogics" ],
+      "SolutionFileLocation": "J:\\MyCompany.BusinessLogics\\BusinessLogics.sln",
+      "VisualAttributes": {
+        "NodeBackground": "#ffcc00",
+        "NodeBorder": "Black",
+        "NodeText": "Black",
+        "ImpactedNodeBackground": "#ffcc00",
+        "ImpactedNodeBorder": "Red",
+        "ImpactedNodeText": "Red",
+        "ImpactedEdgeColor": "Red"
+      }
+    },
+    {
+      "Name": "MyProduct",
+      "Description": "The product application",
+      "IdentifiersPrefix": "MyProduct",
+      "GitRepositoryLocations": [ "J:\\MyCompany.MyProduct" ],
+      "SolutionFileLocation": "J:\\MyCompany.MyProduct\\MyProduct.sln",
+      "VisualAttributes": {
+        "NodeBackground": "White",
+        "NodeBorder": "Black",
+        "NodeText": "Black",
+        "ImpactedNodeBackground": "White",
+        "ImpactedNodeBorder": "Red",
+        "ImpactedNodeText": "Red",
+        "ImpactedEdgeColor": "Red"
+      }
+    }
+  ]
+}

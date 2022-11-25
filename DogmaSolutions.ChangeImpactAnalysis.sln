@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32922.545
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DogmaSolutions.ChangeImpactAnalysis.WindowsApp", "DogmaSolutions.ChangeImpactAnalysis.WindowsApp\DogmaSolutions.ChangeImpactAnalysis.WindowsApp.csproj", "{71E93958-4D00-405B-A3A8-E3C999FCF478}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DogmaSolutions.ChangeImpactAnalysis", "DogmaSolutions.ChangeImpactAnalysis\DogmaSolutions.ChangeImpactAnalysis.csproj", "{87BC45C0-242F-4F62-84CC-72DC81FD36F3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DogmaSolutions.ChangeImpactAnalysis.Abstractions", "DogmaSolutions.ChangeImpactAnalysis.Abstractions\DogmaSolutions.ChangeImpactAnalysis.Abstractions.csproj", "{10D6AE94-6BCD-4D1A-81D2-DBB7A8907CB0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Global", "Global", "{FF7A9E93-75F2-4844-9EFD-CCB6A7AAA912}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		BannedSymbols.txt = BannedSymbols.txt
+		Directory.Build.props = Directory.Build.props
+		DuplicateCode.Allowed.txt = DuplicateCode.Allowed.txt
+		Global.ruleset = Global.ruleset
+		README.md = README.md
+		RiderInspectionSettings.xml = RiderInspectionSettings.xml
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogmaSolutions.ChangeImpactAnalysis.Sample01", "DogmaSolutions.ChangeImpactAnalysis.Sample01\DogmaSolutions.ChangeImpactAnalysis.Sample01.csproj", "{DA56E726-1E5F-4B01-89F0-052F949CB83E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{71E93958-4D00-405B-A3A8-E3C999FCF478}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71E93958-4D00-405B-A3A8-E3C999FCF478}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71E93958-4D00-405B-A3A8-E3C999FCF478}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71E93958-4D00-405B-A3A8-E3C999FCF478}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87BC45C0-242F-4F62-84CC-72DC81FD36F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87BC45C0-242F-4F62-84CC-72DC81FD36F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87BC45C0-242F-4F62-84CC-72DC81FD36F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87BC45C0-242F-4F62-84CC-72DC81FD36F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10D6AE94-6BCD-4D1A-81D2-DBB7A8907CB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10D6AE94-6BCD-4D1A-81D2-DBB7A8907CB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10D6AE94-6BCD-4D1A-81D2-DBB7A8907CB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10D6AE94-6BCD-4D1A-81D2-DBB7A8907CB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA56E726-1E5F-4B01-89F0-052F949CB83E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA56E726-1E5F-4B01-89F0-052F949CB83E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA56E726-1E5F-4B01-89F0-052F949CB83E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA56E726-1E5F-4B01-89F0-052F949CB83E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B9342362-98E1-4CD7-8250-104A96E314CE}
+	EndGlobalSection
+EndGlobal
