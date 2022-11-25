@@ -9,6 +9,11 @@ cit.: Wikipedia: *'Change impact analysis' or 'impact analysis' is the analysis 
 
 See also https://en.wikipedia.org/wiki/Change_impact_analysis
 
+# Premise and project status
+This project is still in a very early development stage.
+Many functionalities are missing, and will be added in the near future
+
+
 # What does this project contain ?
 This project contains an extendable, pluggable WPF application usable to:
 1. Load a user-defined **"architecture descriptor"**, a JSON file that describes how the target application is structured in terms of:
@@ -16,6 +21,7 @@ This project contains an extendable, pluggable WPF application usable to:
    - Git-based local repositories of code
 2. Automatically discover and generate a diagram that represents the architecture of the application, including the relationships between its modules/components.
 3. Automatically analize a selected set of Git commits, and determine how such commits impact on the overall architectural diagram
+
 
 # How does the Change Impact Analyzer work ?
 1. The user create a **"architecture descriptor"** that describe how the target application is structured
@@ -29,6 +35,14 @@ This project contains an extendable, pluggable WPF application usable to:
 6. For every modified/created file, the corresponding *.csproj* file is marked as "changed"
 7. The detected changes are propagated into the dependencies graph, so that the user can clearly see which parts of the system has been impacted
 
+--- 
+The dependencies graph is shown just after the analysis is completed, and the detected impacts are highlighted in red
+
+![alt text](https://github.com/DogmaSolutions/ChangeImpactAnalysis/blob/main/Docs/Sample_01.png?raw=true)
+
+The detected impacts are also listed into an appropriate report tab
+
+![alt text](https://github.com/DogmaSolutions/ChangeImpactAnalysis/blob/main/Docs/Sample_02.png?raw=true)
 
 # Supported technologies
 At the current state of development, the "Change Impact Analysis" application is able to explore and discover the dependencies of
